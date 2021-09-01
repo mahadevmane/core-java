@@ -5,37 +5,37 @@ import java.util.concurrent.ThreadFactory;
 
 public class ThreadLocalDemo {
 
-	private static final ThreadLocal<String> conn = new ThreadLocal<String>();
+    private static final ThreadLocal<String> conn = new ThreadLocal<String>();
 
-	public static void main(String[] args) throws InterruptedException {
-		ThreadFactory executor = Executors.defaultThreadFactory();
-		Thread t1 = executor.newThread(new Runnable() {
+    public static void main(String[] args) throws InterruptedException {
+        ThreadFactory executor = Executors.defaultThreadFactory();
+        Thread t1 = executor.newThread(new Runnable() {
 
-			@Override
-			public void run() {
-				System.out.println("Connection 1 setting value...");
-				conn.set("Connection 1");
-				try {
-					Thread.sleep(3000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+            @Override
+            public void run() {
+                System.out.println("Connection 1 setting value...");
+                conn.set("Connection 1");
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
-				System.out.println(conn.get());
-			}
-		});
+                System.out.println(conn.get());
+            }
+        });
 
-		Thread t2 = executor.newThread(new Runnable() {
+        Thread t2 = executor.newThread(new Runnable() {
 
-			@Override
-			public void run() {
-				System.out.println("Connection 2 setting value...");
-				conn.set("Connection 2");
-			}
-		});
+            @Override
+            public void run() {
+                System.out.println("Connection 2 setting value...");
+                conn.set("Connection 2");
+            }
+        });
 
-		t1.start();
-		Thread.sleep(100);
-		t2.start();
-	}
+        t1.start();
+        Thread.sleep(100);
+        t2.start();
+    }
 }

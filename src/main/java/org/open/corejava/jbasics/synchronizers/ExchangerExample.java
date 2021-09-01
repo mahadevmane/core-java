@@ -7,58 +7,58 @@ import java.util.concurrent.Executors;
 
 public class ExchangerExample {
 
-	final Exchanger<String> exchanger = new Exchanger<String>();
+    final Exchanger<String> exchanger = new Exchanger<String>();
 
-	public void doWork() {
+    public static void main(String[] args) {
 
-		ExecutorService pool = Executors.newFixedThreadPool(2);
+        ExchangerExample e = new ExchangerExample();
+        e.doWork();
+    }
 
-		pool.execute(new Runnable() {
-			public void run() {
-				String someData, result = null;
+    public void doWork() {
 
-				while (true) {
+        ExecutorService pool = Executors.newFixedThreadPool(2);
 
-					try {
-						Thread.sleep(new Random().nextInt(3000));
-						someData = "Data From Thread 1";
-						result = exchanger.exchange(someData);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					System.out.println("In Thread 1 the result: " + result);
+        pool.execute(new Runnable() {
+            public void run() {
+                String someData, result = null;
 
-				}
+                while (true) {
 
-			}
-		});
+                    try {
+                        Thread.sleep(new Random().nextInt(3000));
+                        someData = "Data From Thread 1";
+                        result = exchanger.exchange(someData);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("In Thread 1 the result: " + result);
 
-		pool.execute(new Runnable() {
-			public void run() {
-				String someData, result = null;
+                }
 
-				while (true) {
+            }
+        });
 
-					try {
-						Thread.sleep(new Random().nextInt(3000));
-						someData = "Data From Thread 2";
-						result = exchanger.exchange(someData);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					System.out.println("In thread 2 the result: " + result);
+        pool.execute(new Runnable() {
+            public void run() {
+                String someData, result = null;
 
-				}
+                while (true) {
 
-			}
-		});
+                    try {
+                        Thread.sleep(new Random().nextInt(3000));
+                        someData = "Data From Thread 2";
+                        result = exchanger.exchange(someData);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("In thread 2 the result: " + result);
 
-	}
+                }
 
-	public static void main(String[] args) {
+            }
+        });
 
-		ExchangerExample e = new ExchangerExample();
-		e.doWork();
-	}
+    }
 
 }

@@ -8,46 +8,46 @@ import java.util.concurrent.ThreadFactory;
 
 public class CyclicBarierEx {
 
-	private static class WorkerThread implements Runnable {
-		private final Random r = new Random();
-		CyclicBarrier barier;
-		private final int flag = 1;
+    public static void main(String[] args) {
+        // CyclicBarrier barier = new CyclicBarrier(5);
+        CyclicBarrier barier = new CyclicBarrier(5, new Runnable() {
 
-		public WorkerThread(CyclicBarrier barier) {
-			this.barier = barier;
-		}
+            @Override
+            public void run() {
+                System.out.println("No any barier action...");
+            }
+        });
+        ThreadFactory factory = Executors.defaultThreadFactory();
 
-		@Override
-		public void run() {
-			try {
-				Thread.sleep(r.nextInt(r.nextInt(3000)));
-				System.out.println(Thread.currentThread().getName() + " is gathering needed data...");
+        for (int i = 0; i < 10; i++)
+            factory.newThread(new WorkerThread(barier)).start();
+    }
 
-				if (flag == 1)
-					Thread.currentThread().interrupt();
+    private static class WorkerThread implements Runnable {
+        private final Random r = new Random();
+        private final int flag = 1;
+        CyclicBarrier barier;
 
-				barier.await();
-				System.out.println(Thread.currentThread().getName() + " is ready to send data to server...");
-			} catch (InterruptedException e) {
-				System.err.println("Interrupted exception...");
-			} catch (BrokenBarrierException e) {
-				System.err.println("Barier broken exception...");
-			}
-		}
-	}
+        public WorkerThread(CyclicBarrier barier) {
+            this.barier = barier;
+        }
 
-	public static void main(String[] args) {
-		// CyclicBarrier barier = new CyclicBarrier(5);
-		CyclicBarrier barier = new CyclicBarrier(5, new Runnable() {
+        @Override
+        public void run() {
+            try {
+                Thread.sleep(r.nextInt(r.nextInt(3000)));
+                System.out.println(Thread.currentThread().getName() + " is gathering needed data...");
 
-			@Override
-			public void run() {
-				System.out.println("No any barier action...");
-			}
-		});
-		ThreadFactory factory = Executors.defaultThreadFactory();
+                if (flag == 1)
+                    Thread.currentThread().interrupt();
 
-		for (int i = 0; i < 10; i++)
-			factory.newThread(new WorkerThread(barier)).start();
-	}
+                barier.await();
+                System.out.println(Thread.currentThread().getName() + " is ready to send data to server...");
+            } catch (InterruptedException e) {
+                System.err.println("Interrupted exception...");
+            } catch (BrokenBarrierException e) {
+                System.err.println("Barier broken exception...");
+            }
+        }
+    }
 }

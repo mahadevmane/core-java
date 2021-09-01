@@ -35,11 +35,11 @@ class Graph {
     private static final Deque<Integer> stack = new ArrayDeque<>();
 
     private final int v;
-    private int mkl;
-    private int cnt;
     private final int[] kls;
     private final Set<Integer>[] adjList;
     private final boolean[] visited;
+    private int mkl;
+    private int cnt;
 
     public Graph(int v, String[] kls) {
         this.v = v;

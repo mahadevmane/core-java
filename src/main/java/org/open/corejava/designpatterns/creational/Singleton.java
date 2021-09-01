@@ -1,12 +1,12 @@
 package org.open.corejava.designpatterns.creational;
 
 public final class Singleton {
-	private static final Singleton instance = new Singleton();
+    private static final Singleton instance = new Singleton();
 
-	private Singleton() {
-	}
+    private Singleton() {
+    }
 
-	public static Singleton getInstance() {
-		return instance;
-	}
+    public static Singleton getInstance() {
+        return instance;
+    }
 }

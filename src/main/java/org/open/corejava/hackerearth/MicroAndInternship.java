@@ -9,10 +9,10 @@ import java.util.List;
 
 public class MicroAndInternship {
     private static final int MAX = 100001;
-    private static TreeNode[] tree;
     private static final int[][] dp = new int[MAX][20];
     private static final int[][] arr = new int[MAX][101];
     private static final Deque<Node> stack = new ArrayDeque<>(30000);
+    private static TreeNode[] tree;
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

@@ -11,9 +11,9 @@ public class BasicDataStructures {
 }
 
 class MyStack {
-    private int top;
     private final int capacity;
     private final int[] stackArray;
+    private int top;
 
     public MyStack(int capacity) {
         this.top = -1;

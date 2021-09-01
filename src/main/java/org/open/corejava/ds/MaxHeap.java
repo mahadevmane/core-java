@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 public class MaxHeap<T> {
-    private int index;
     private final Map<T, Integer> map;
     private final List<Vertex<T>> heap;
+    private int index;
 
     public MaxHeap() {
         this.index = -1;
