@@ -2,6 +2,10 @@ package org.open.corejava.projecteuler;
 
 import java.util.Calendar;
 
+/**
+ * @author Mahadev Mane
+ */
+
 public class ProjectEulerP19S2 {
     public static void main(String[] args) {
         int result = 0;

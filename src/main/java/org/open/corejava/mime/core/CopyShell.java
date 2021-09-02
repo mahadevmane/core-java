@@ -101,11 +101,11 @@ public class CopyShell extends JFrame implements ActionListener {
             JFileChooser fcSrc = new JFileChooser();
             fcSrc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
             fcSrc.setDialogTitle("Select Source");
-            fcSrc.setCurrentDirectory(new File(srcPath.getText())
-                    .getParentFile());
+            fcSrc.setCurrentDirectory(new File(srcPath.getText()).getParentFile());
             action = fcSrc.showOpenDialog(this);
-            if (action == JFileChooser.APPROVE_OPTION)
+            if (action == JFileChooser.APPROVE_OPTION) {
                 srcPath.setText(fcSrc.getSelectedFile().getPath());
+            }
         }
 
         if (cmd.equals("Destination")) {
@@ -114,8 +114,9 @@ public class CopyShell extends JFrame implements ActionListener {
             fcDest.setDialogTitle("Select Destination");
             fcDest.setCurrentDirectory(new File(destPath.getText()));
             action = fcDest.showOpenDialog(this);
-            if (action == JFileChooser.APPROVE_OPTION)
+            if (action == JFileChooser.APPROVE_OPTION) {
                 destPath.setText(fcDest.getSelectedFile().getPath());
+            }
         }
 
         if (cmd.equals("Start Copying...")) {
@@ -124,13 +125,10 @@ public class CopyShell extends JFrame implements ActionListener {
             progress = 0;
             sourcePath = srcPath.getText();
             destinationPath = destPath.getText();
-            File source = new File(sourcePath), destination = new File(
-                    destinationPath);
+            File source = new File(sourcePath), destination = new File(destinationPath);
 
             if (sourcePath.equals("") || destinationPath.equals("")) {
-                JOptionPane.showMessageDialog(null,
-                        "Source or Destination must not be empty.", "Error",
-                        JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Source or Destination must not be empty.", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 if (source.isDirectory())
@@ -144,28 +142,22 @@ public class CopyShell extends JFrame implements ActionListener {
                 startTime = System.currentTimeMillis();
                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
-                if (isSubDirectory(new File(sourcePath), new File(
-                        destinationPath))) {
-                    JOptionPane
-                            .showMessageDialog(
-                                    null,
-                                    "The destination is the same or subfolder of the source folder.",
-                                    "Wrong Selection",
-                                    JOptionPane.ERROR_MESSAGE);
+                if (isSubDirectory(new File(sourcePath), new File(destinationPath))) {
+                    JOptionPane.showMessageDialog(null, "The destination is the same or subfolder of the source folder.", "Wrong Selection", JOptionPane.ERROR_MESSAGE);
                     destPath.setText("");
                 } else {
-                    if (source.isDirectory())
-                        es.execute(new CopyDirectory(source, new File(
-                                destination, source.getName()), es));
-                    else
-                        es.execute(new CopyFile(source, new File(destination,
-                                source.getName())));
+                    if (source.isDirectory()) {
+                        es.execute(new CopyDirectory(source, new File(destination, source.getName()), es));
+                    } else {
+                        es.execute(new CopyFile(source, new File(destination, source.getName())));
+                    }
                 }
             }
         }
 
-        if (cmd.equals("Cancel"))
+        if (cmd.equals("Cancel")) {
             System.exit(0);
+        }
     }
 
     private boolean isSubDirectory(File src, File dest) {
@@ -180,9 +172,9 @@ public class CopyShell extends JFrame implements ActionListener {
     private void findSize(File source) {
         File[] files = source.listFiles();
         for (File file : files) {
-            if (file.isDirectory())
+            if (file.isDirectory()) {
                 findSize(file);
-            else {
+            } else {
                 counter++;
                 srcSize += file.length();
             }

@@ -3,51 +3,58 @@ package org.open.corejava.projecteuler;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+/**
+ * @author Mahadev Mane
+ *
+ * <b>Maximum Path Sum:</b> By starting at the top of the triangle below
+ * and moving to adjucent numbers on the row below. Find the maximum total from top to the bottom.
+ * <p>
+ * 3
+ * 7 4
+ * 2 4 6
+ * 8 5 9 3
+ */
+
 public class ProjectEulerP67S1 {
     public static void main(String[] args) throws Exception {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
-            String[] inputs;
-
             System.out.print("Enter number of Lines: ");
-            int n = Integer.parseInt(br.readLine());
+            int noOfRows = Integer.parseInt(br.readLine());
 
             // Jagged Arrays
-            int[][] data = new int[n][];
-            int[][] res = new int[n][];
+            int[][] data = new int[noOfRows][];
 
             System.out.println("Enter data-");
-            for (int i = 0; i < n; i++) {
+            String[] inputs;
+            for (int row = 0; row < noOfRows; row++) {
                 inputs = br.readLine().split(" ");
-                data[i] = new int[inputs.length];
-                res[i] = new int[inputs.length];
+                data[row] = new int[inputs.length];
 
-                for (int j = 0; j < inputs.length; j++) {
-                    data[i][j] = Integer.parseInt(inputs[j]);
+                for (int col = 0; col < inputs.length; col++) {
+                    data[row][col] = Integer.parseInt(inputs[col]);
                 }
             }
 
-            res[0][0] = data[0][0];
-            for (int i = 1; i < data.length; i++) {
-                for (int j = 0; j < data[i].length; j++) {
-                    if (j == 0) {
-                        res[i][j] = res[i - 1][j] + data[i][j];
-                    } else if (j == data[i].length - 1) {
-                        res[i][j] = res[i - 1][j - 1] + data[i][j];
+            int prevRow, prevCol;
+            for (int row = 1; row < data.length; row++) {
+                prevRow = row - 1;
+                for (int col = 0; col < data[row].length; col++) {
+                    prevCol = col - 1;
+                    if (col == 0) {
+                        data[row][col] = data[prevRow][col] + data[row][col];
+                    } else if (col == data[row].length - 1) {
+                        data[row][col] = data[prevRow][prevCol] + data[row][col];
                     } else {
-                        if (res[i - 1][j - 1] > res[i - 1][j]) {
-                            res[i][j] = res[i - 1][j - 1] + data[i][j];
-                        } else {
-                            res[i][j] = res[i - 1][j] + data[i][j];
-                        }
+                        data[row][col] = Math.max(data[prevRow][prevCol], data[prevRow][col]) + data[row][col];
                     }
                 }
             }
 
-            n = n - 1;
-            int result = res[0][0];
-            for (int i = 0; i < res[n].length; i++) {
-                if (result < res[n][i]) {
-                    result = res[n][i];
+            int lastRow = noOfRows - 1;
+            int result = data[0][0];
+            for (int col = 0; col < data[lastRow].length; col++) {
+                if (result < data[lastRow][col]) {
+                    result = data[lastRow][col];
                 }
             }
 

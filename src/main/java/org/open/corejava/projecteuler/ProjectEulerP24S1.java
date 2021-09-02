@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * @author Mahadev Mane
+ */
+
 public class ProjectEulerP24S1 {
     private static final List<String> lst = new ArrayList<String>();
 

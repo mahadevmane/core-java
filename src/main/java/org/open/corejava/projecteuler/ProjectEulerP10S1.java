@@ -1,5 +1,9 @@
 package org.open.corejava.projecteuler;
 
+/**
+ * @author Mahadev Mane
+ */
+
 public class ProjectEulerP10S1 {
     private final static int MAX = 2000000;
 

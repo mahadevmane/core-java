@@ -1,5 +1,9 @@
 package org.open.corejava.projecteuler;
 
+/**
+ * @author Mahadev Mane
+ */
+
 public class ProjectEulerP1S1 {
     private static final int TARGET = 999;
 

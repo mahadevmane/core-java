@@ -1,5 +1,9 @@
 package org.open.corejava.projecteuler;
 
+/**
+ * @author Mahadev Mane
+ */
+
 public class ProjectEulerP3S1 {
     public static void main(String[] args) {
         long num = 600851475143L;
@@ -11,7 +15,6 @@ public class ProjectEulerP3S1 {
                 num = num / primeFactor;
                 continue;
             }
-
             primeFactor++;
         }
 

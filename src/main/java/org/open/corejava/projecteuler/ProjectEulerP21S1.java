@@ -1,5 +1,9 @@
 package org.open.corejava.projecteuler;
 
+/**
+ * @author Mahadev Mane
+ */
+
 public class ProjectEulerP21S1 {
     private final static int MAX = 10001;
     private static final int[] res = new int[MAX];

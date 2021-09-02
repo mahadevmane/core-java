@@ -1,5 +1,9 @@
 package org.open.corejava.projecteuler;
 
+/**
+ * @author Mahadev Mane
+ */
+
 public class ProjectEulerP7S1 {
     private final static int RANK = 10001;
 

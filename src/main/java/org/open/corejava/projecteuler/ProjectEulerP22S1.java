@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * @author Mahadev Mane
+ */
+
 public class ProjectEulerP22S1 {
     private static final List<String> names = new ArrayList<String>();
 

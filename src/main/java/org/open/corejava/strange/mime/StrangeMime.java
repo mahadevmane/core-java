@@ -8,6 +8,10 @@ package org.open.corejava.strange.mime;
 import java.io.*;
 import java.nio.channels.FileChannel;
 
+/**
+ * @author Mahadev Mane
+ */
+
 public class StrangeMime {
     private static FileChannel sc, tc;
 

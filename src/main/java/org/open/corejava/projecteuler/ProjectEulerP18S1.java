@@ -7,6 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Mahadev Mane
+ */
+
 public class ProjectEulerP18S1 {
     private static final Map<Integer, List<Integer>> data = new HashMap<>();
     private static int result = 0;

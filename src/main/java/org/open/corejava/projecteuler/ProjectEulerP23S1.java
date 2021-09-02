@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author Mahadev Mane
+ */
+
 public class ProjectEulerP23S1 {
     private final static int MAX = 28124;
     private static final int[] sumOfDivisors = new int[MAX];

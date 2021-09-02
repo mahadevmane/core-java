@@ -2,6 +2,10 @@ package org.open.corejava.projecteuler;
 
 import java.math.BigInteger;
 
+/**
+ * @author Mahadev Mane
+ */
+
 public class ProjectEulerP16S1 {
     private final static int MAX = 1000;
 
@@ -15,8 +19,8 @@ public class ProjectEulerP16S1 {
 
         int result = 0;
         char[] chs = temp.toString().toCharArray();
-        for (int i = 0; i < chs.length; i++) {
-            result += Integer.parseInt(String.valueOf(chs[i]));
+        for (char ch : chs) {
+            result += Integer.parseInt(String.valueOf(ch));
         }
 
         System.out.println(result);

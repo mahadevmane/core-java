@@ -1,5 +1,9 @@
 package org.open.corejava.projecteuler;
 
+/**
+ * @author Mahadev Mane
+ */
+
 public class ProjectEulerP26S1 {
     public static void main(String[] args) {
         int divisor = 0, sequenceLen = 0, tempSquenceLen;

@@ -2,6 +2,10 @@ package org.open.corejava.projecteuler;
 
 import java.math.BigInteger;
 
+/**
+ * @author Mahadev Mane
+ */
+
 public class ProjectEulerP20S1 {
     public static void main(String[] args) {
         BigInteger fact = new BigInteger("1");

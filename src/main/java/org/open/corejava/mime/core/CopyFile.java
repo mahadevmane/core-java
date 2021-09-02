@@ -116,8 +116,6 @@ public class CopyFile implements Runnable {
             sc.transferTo(0, sc.size(), tc);
             sc.close();
             tc.close();
-        } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
         } catch (IOException e1) {
             e1.printStackTrace();
         }
