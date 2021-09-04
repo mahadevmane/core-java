@@ -13,6 +13,8 @@ import java.io.InputStreamReader;
  * 7 4
  * 2 4 6
  * 8 5 9 3
+ *
+ * <a href="https://projecteuler.net/problem=67">P67</a>
  */
 
 public class ProjectEulerP67S1 {

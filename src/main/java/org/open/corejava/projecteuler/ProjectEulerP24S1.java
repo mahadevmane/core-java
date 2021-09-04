@@ -6,6 +6,8 @@ import java.util.List;
 
 /**
  * @author Mahadev Mane
+ * <p>
+ * <a href="https://projecteuler.net/problem=24">P24</a>
  */
 
 public class ProjectEulerP24S1 {

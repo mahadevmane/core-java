@@ -9,6 +9,14 @@ import java.util.Map;
 
 /**
  * @author Mahadev Mane
+ *
+ * <b>Maximum Path Sum:</b> By starting at the top of the triangle below
+ * and moving to adjucent numbers on the row below. Find the maximum total from top to the bottom.
+ * <p>
+ * 3
+ * 7 4
+ * 2 4 6
+ * 8 5 9 3
  */
 
 public class ProjectEulerP18S1 {

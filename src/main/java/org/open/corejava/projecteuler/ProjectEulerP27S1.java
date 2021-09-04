@@ -7,6 +7,8 @@ package org.open.corejava.projecteuler;
  * expression (n*n + an + b, where |a| <= 1000 and |b| <= 1000) that
  * produces the maximum number of primes for consecutive values of n,
  * starting with n=0.
+ *
+ * <a href="https://projecteuler.net/problem=27">P27</a>
  */
 
 public class ProjectEulerP27S1 {

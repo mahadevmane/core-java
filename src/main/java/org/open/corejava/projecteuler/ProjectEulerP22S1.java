@@ -8,6 +8,8 @@ import java.util.List;
 
 /**
  * @author Mahadev Mane
+ * <p>
+ * <a href="https://projecteuler.net/problem=22">P22</a>
  */
 
 public class ProjectEulerP22S1 {

@@ -2,6 +2,10 @@ package org.open.corejava.projecteuler;
 
 /**
  * @author Mahadev Mane
+ * <p>
+ * The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+ * <p>
+ * Find the sum of all the primes below two million.
  */
 
 public class ProjectEulerP10S1 {

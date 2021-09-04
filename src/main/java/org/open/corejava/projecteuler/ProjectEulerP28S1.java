@@ -2,6 +2,8 @@ package org.open.corejava.projecteuler;
 
 /**
  * @author Mahadev Mane
+ * <p>
+ * <a href="https://projecteuler.net/problem=28">P28</a>
  */
 
 public class ProjectEulerP28S1 {

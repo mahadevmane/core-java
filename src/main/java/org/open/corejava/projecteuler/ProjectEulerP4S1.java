@@ -2,6 +2,11 @@ package org.open.corejava.projecteuler;
 
 /**
  * @author Mahadev Mane
+ * <p>
+ * A palindromic number reads the same both ways.
+ * The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
+ * <p>
+ * Find the largest palindrome made from the product of two 3-digit numbers.
  */
 
 public class ProjectEulerP4S1 {
