@@ -2,14 +2,16 @@ package org.open.corejava.mime.core;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.channels.FileChannel;
 
 public class CopyFile implements Runnable {
     private static final Object sync = new Object();
     private static final Object obj = new Object();
     private final File source;
-    private FileChannel sc, tc;
     private File destination;
 
     public CopyFile(File source, File destination) {
@@ -35,12 +37,13 @@ public class CopyFile implements Runnable {
                         break;
                     case 2:
                         int renamePolicy = WhatToDoDialog.getReNamePolicy();
-                        if (renamePolicy == 1)
+                        if (renamePolicy == 1) {
                             renameByPrefix();
-                        else if (renamePolicy == 2)
+                        } else if (renamePolicy == 2) {
                             renameByPostfix();
-                        else
+                        } else {
                             renameFile();
+                        }
                         copyFile();
                         break;
                 }
@@ -65,17 +68,16 @@ public class CopyFile implements Runnable {
 
     private void renameByPostfix() {
         String parentPath = destination.getParentFile().getPath();
-        StringBuffer fName = new StringBuffer(destination.getName());
-        fName.insert(fName.lastIndexOf("."), " - " + WhatToDoDialog.getRenameBy());
-        destination = new File(parentPath + "\\" + fName);
+        StringBuilder builder = new StringBuilder(destination.getName());
+        builder.insert(builder.lastIndexOf("."), " - " + WhatToDoDialog.getRenameBy());
+        destination = new File(parentPath + "\\" + builder);
         if (destination.exists())
             renameFile();
     }
 
     private void renameByPrefix() {
         String parentPath = destination.getParentFile().getPath();
-        StringBuffer fName = new StringBuffer(WhatToDoDialog.getRenameBy() + " - " + destination.getName());
-        destination = new File(parentPath + "\\" + fName);
+        destination = new File(parentPath + "\\" + WhatToDoDialog.getRenameBy() + " - " + destination.getName());
         if (destination.exists())
             renameFile();
     }
@@ -84,14 +86,14 @@ public class CopyFile implements Runnable {
         boolean flag = false;
         int i, cnt = 0;
         String parentPath = destination.getParentFile().getPath();
-        StringBuffer fName = new StringBuffer(destination.getName());
+        StringBuilder builder = new StringBuilder(destination.getName());
 
-        int start = fName.lastIndexOf("(");
-        int end = fName.lastIndexOf(")");
+        int start = builder.lastIndexOf("(");
+        int end = builder.lastIndexOf(")");
 
         for (i = start + 1; i < end; i++) {
             flag = true;
-            int ch = fName.charAt(i) - 48;
+            int ch = builder.charAt(i) - 48;
             if (ch >= 0 && ch <= 9)
                 cnt = (cnt * 10) + ch;
             else
@@ -99,11 +101,11 @@ public class CopyFile implements Runnable {
         }
 
         if (i < end || !flag)
-            fName.insert(fName.lastIndexOf("."), " (2)");
+            builder.insert(builder.lastIndexOf("."), " (2)");
         else
-            fName.replace(start, end, "(" + ++cnt);
+            builder.replace(start, end, "(" + ++cnt);
 
-        destination = new File(parentPath + "\\" + fName);
+        destination = new File(parentPath + "\\" + builder);
         if (destination.exists())
             renameFile();
     }
@@ -111,8 +113,8 @@ public class CopyFile implements Runnable {
     @SuppressWarnings("resource")
     private void copyFile() {
         try {
-            sc = new FileInputStream(source).getChannel();
-            tc = new FileOutputStream(destination).getChannel();
+            FileChannel sc = new FileInputStream(source).getChannel();
+            FileChannel tc = new FileOutputStream(destination).getChannel();
             sc.transferTo(0, sc.size(), tc);
             sc.close();
             tc.close();

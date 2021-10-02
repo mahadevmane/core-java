@@ -3,14 +3,16 @@ package org.open.corejava.mime;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.channels.FileChannel;
 
 public class CopyFile implements Runnable {
     private static final Object sync = new Object();
     private static final Object obj = new Object();
     private final File source;
-    private FileChannel sc, tc;
     private File destination;
 
     public CopyFile(File source, File destination) {
@@ -98,7 +100,7 @@ public class CopyFile implements Runnable {
 
     private void renameByPostfix() {
         String parentPath = destination.getParentFile().getPath();
-        StringBuffer fName = new StringBuffer(destination.getName());
+        StringBuilder fName = new StringBuilder(destination.getName());
         fName.insert(fName.lastIndexOf("."), WhatToDo.rnp.getText());
         destination = new File(parentPath + "\\" + fName);
         if (destination.exists())
@@ -107,18 +109,17 @@ public class CopyFile implements Runnable {
 
     private void renameByPrefix() {
         String parentPath = destination.getParentFile().getPath();
-        StringBuffer fName = new StringBuffer(WhatToDo.rnp.getText()
-                + destination.getName());
-        destination = new File(parentPath + "\\" + fName);
-        if (destination.exists())
+        destination = new File(parentPath + "\\" + WhatToDo.rnp.getText() + destination.getName());
+        if (destination.exists()) {
             renameFile();
+        }
     }
 
     private void renameFile() {
         boolean flag = false;
         int i, cnt = 0;
         String parentPath = destination.getParentFile().getPath();
-        StringBuffer fName = new StringBuffer(destination.getName());
+        StringBuilder fName = new StringBuilder(destination.getName());
 
         int start = fName.lastIndexOf("(");
         int end = fName.lastIndexOf(")");
@@ -145,13 +146,11 @@ public class CopyFile implements Runnable {
     @SuppressWarnings("resource")
     private void copyFile() {
         try {
-            sc = new FileInputStream(source).getChannel();
-            tc = new FileOutputStream(destination).getChannel();
+            FileChannel sc = new FileInputStream(source).getChannel();
+            FileChannel tc = new FileOutputStream(destination).getChannel();
             sc.transferTo(0, sc.size(), tc);
             sc.close();
             tc.close();
-        } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
         } catch (IOException e1) {
             e1.printStackTrace();
         }

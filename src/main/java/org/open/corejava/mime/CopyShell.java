@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -18,16 +19,8 @@ public class CopyShell extends JFrame implements ActionListener {
     static int renamePolicy = 0;
     static String renameBy = "";
     private final ExecutorService es = Executors.newFixedThreadPool(22);
-    private final JPanel outer;
-    private final JPanel jp1;
-    private final JPanel jp2;
     private final JTextField srcPath;
     private final JTextField destPath;
-    private final JButton srcBrowser;
-    private final JButton destBrowser;
-    private final JButton startCopying;
-    private final JButton stopCopying;
-    private String sourcePath = null, destinationPath = null;
 
     public CopyShell() {
         setTitle("Mime...[Mp]");
@@ -43,14 +36,14 @@ public class CopyShell extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         setResizable(false);
 
-        jp1 = new JPanel();
+        JPanel jp1 = new JPanel();
         jp1.add(new JLabel("Source :        "));
 
         srcPath = new JTextField(27);
         srcPath.setEditable(false);
         jp1.add(srcPath);
 
-        srcBrowser = new JButton("Browse...");
+        JButton srcBrowser = new JButton("Browse...");
         srcBrowser.setActionCommand("Source");
         srcBrowser.addActionListener(this);
         jp1.add(srcBrowser);
@@ -61,20 +54,20 @@ public class CopyShell extends JFrame implements ActionListener {
         destPath.setEditable(false);
         jp1.add(destPath);
 
-        destBrowser = new JButton("Browse...");
+        JButton destBrowser = new JButton("Browse...");
         destBrowser.setActionCommand("Destination");
         destBrowser.addActionListener(this);
         jp1.add(destBrowser);
 
-        startCopying = new JButton("Start Copying...");
+        JButton startCopying = new JButton("Start Copying...");
         startCopying.addActionListener(this);
         jp1.add(startCopying);
 
-        stopCopying = new JButton("Cancel");
+        JButton stopCopying = new JButton("Cancel");
         stopCopying.addActionListener(this);
         jp1.add(stopCopying);
 
-        jp2 = new JPanel(new BorderLayout());
+        JPanel jp2 = new JPanel(new BorderLayout());
         UIManager.put("ProgressBar.selectionBackground", Color.black);
         UIManager.put("ProgressBar.selectionForeground", Color.white);
         UIManager.put("ProgressBar.foreground", new Color(7, 190, 22));
@@ -83,7 +76,7 @@ public class CopyShell extends JFrame implements ActionListener {
         jp2.add(pBar);
         pBar.setVisible(false);
 
-        outer = new JPanel(new BorderLayout());
+        JPanel outer = new JPanel(new BorderLayout());
         outer.add(jp1, BorderLayout.CENTER);
         outer.add(jp2, BorderLayout.SOUTH);
         add(outer);
@@ -124,8 +117,8 @@ public class CopyShell extends JFrame implements ActionListener {
             WhatToDo.setAll(false);
             counter = srcSize = destSize = 0;
             progress = 0;
-            sourcePath = srcPath.getText();
-            destinationPath = destPath.getText();
+            String sourcePath = srcPath.getText();
+            String destinationPath = destPath.getText();
             File source = new File(sourcePath), destination = new File(
                     destinationPath);
 
@@ -181,7 +174,7 @@ public class CopyShell extends JFrame implements ActionListener {
 
     private void findSize(File source) {
         File[] files = source.listFiles();
-        for (File file : files) {
+        for (File file : Objects.requireNonNull(files)) {
             if (file.isDirectory())
                 findSize(file);
             else {

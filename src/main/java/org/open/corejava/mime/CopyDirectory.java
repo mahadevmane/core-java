@@ -1,6 +1,7 @@
 package org.open.corejava.mime;
 
 import java.io.File;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 
 public class CopyDirectory implements Runnable {
@@ -21,7 +22,7 @@ public class CopyDirectory implements Runnable {
 
         File[] files = source.listFiles();
 
-        for (File file : files) {
+        for (File file : Objects.requireNonNull(files)) {
             if (file.isDirectory())
                 es.execute(new CopyDirectory(file, new File(destination, file
                         .getName()), es));

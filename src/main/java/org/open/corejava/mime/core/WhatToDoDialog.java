@@ -11,11 +11,6 @@ public class WhatToDoDialog extends JDialog implements ActionListener {
     private static int option = -1;
     private static int reNamePolicy = 0;
     private static String renameBy = null;
-    private final JTextArea filePath;
-    private final JButton skip;
-    private final JButton replace;
-    private final JButton rename;
-    private final JButton cancel;
     private final JCheckBox opt;
     private final JComboBox<?> rNamePolicy;
 
@@ -28,27 +23,23 @@ public class WhatToDoDialog extends JDialog implements ActionListener {
         add(new JLabel("Select Rename Policy: "));
         String[] items = {"Automatically", "By Prefix", "By Postfix"};
         rNamePolicy = new JComboBox<Object>(items);
-        rNamePolicy.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setReNamePolicy(rNamePolicy.getSelectedIndex());
-                if (reNamePolicy == 1 || reNamePolicy == 2) {
-                    if (reNamePolicy == 1)
-                        setRenameBy(JOptionPane.showInputDialog(null, "Prefixed By: ", "Prefixed By",
-                                JOptionPane.DEFAULT_OPTION));
-                    else
-                        setRenameBy(JOptionPane.showInputDialog(null, "Postfixed By: ", "Postfixed By",
-                                JOptionPane.DEFAULT_OPTION));
+        rNamePolicy.addActionListener(e -> {
+            setReNamePolicy(rNamePolicy.getSelectedIndex());
+            if (reNamePolicy == 1 || reNamePolicy == 2) {
+                if (reNamePolicy == 1) {
+                    setRenameBy(JOptionPane.showInputDialog(null, "Prefixed By: ", "Prefixed By", JOptionPane.PLAIN_MESSAGE));
+                } else {
+                    setRenameBy(JOptionPane.showInputDialog(null, "Postfixed By: ", "Postfixed By", JOptionPane.PLAIN_MESSAGE));
                 }
-                if (getRenameBy() == null) {
-                    reNamePolicy = 0;
-                    rNamePolicy.setSelectedIndex(0);
-                }
+            }
+            if (getRenameBy() == null) {
+                reNamePolicy = 0;
+                rNamePolicy.setSelectedIndex(0);
             }
         });
         add(rNamePolicy);
 
-        filePath = new JTextArea(3, 45);
+        JTextArea filePath = new JTextArea(3, 45);
         filePath.setEditable(false);
         filePath.setLineWrap(true);
         add(filePath);
@@ -58,22 +49,22 @@ public class WhatToDoDialog extends JDialog implements ActionListener {
         opt.setMnemonic('D');
         add(opt);
 
-        skip = new JButton("Skip");
+        JButton skip = new JButton("Skip");
         skip.setMnemonic('S');
         skip.addActionListener(this);
         add(skip);
 
-        replace = new JButton("Replace");
+        JButton replace = new JButton("Replace");
         replace.setMnemonic('R');
         replace.addActionListener(this);
         add(replace);
 
-        rename = new JButton("Rename");
+        JButton rename = new JButton("Rename");
         rename.setMnemonic('e');
         rename.addActionListener(this);
         add(rename);
 
-        cancel = new JButton("Cancel");
+        JButton cancel = new JButton("Cancel");
         cancel.setMnemonic('C');
         cancel.addActionListener(this);
         add(cancel);
