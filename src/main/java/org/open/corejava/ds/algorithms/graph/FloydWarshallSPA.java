@@ -7,6 +7,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * @param <T>
+ * @author Mahadev Mane
+ */
 public class FloydWarshallSPA<T> {
     private static final int INF = Integer.MAX_VALUE;
 
@@ -51,6 +55,6 @@ public class FloydWarshallSPA<T> {
             }
         }
 
-        return new AllPairShortestPath<T>(path, distance);
+        return new AllPairShortestPath<>(path, distance);
     }
 }

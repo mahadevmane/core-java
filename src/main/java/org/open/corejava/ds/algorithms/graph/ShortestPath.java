@@ -2,6 +2,10 @@ package org.open.corejava.ds.algorithms.graph;
 
 import java.util.Map;
 
+/**
+ * @param <T>
+ * @author Mahadev Mane
+ */
 public class ShortestPath<T> {
     public Map<T, T> path;
     public Map<T, Integer> distance;

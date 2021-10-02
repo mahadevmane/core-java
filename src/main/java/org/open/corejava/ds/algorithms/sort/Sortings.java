@@ -3,8 +3,10 @@ package org.open.corejava.ds.algorithms.sort;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+/**
+ * @author Mahadev Mane
+ */
 public class Sortings {
-
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 

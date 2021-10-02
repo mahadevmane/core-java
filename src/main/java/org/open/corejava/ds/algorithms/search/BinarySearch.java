@@ -1,7 +1,10 @@
 package org.open.corejava.ds.algorithms.search;
 
+/**
+ * @param <T>
+ * @author Mahadev Mane
+ */
 public class BinarySearch<T extends Comparable<T>> implements Search<T> {
-
     @Override
     public boolean search(T[] sortedArr, T item) {
         return find(sortedArr, item) != -1;

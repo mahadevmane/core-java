@@ -5,6 +5,10 @@ import org.open.corejava.ds.Vertex;
 
 import java.util.*;
 
+/**
+ * @param <T>
+ * @author Mahadev Mane
+ */
 public class TopologicalSort<T> {
     private final Deque<T> stack;
 

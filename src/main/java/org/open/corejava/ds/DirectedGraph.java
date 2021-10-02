@@ -2,6 +2,10 @@ package org.open.corejava.ds;
 
 import java.util.ArrayList;
 
+/**
+ * @param <T>
+ * @author Mahadev Mane
+ */
 public class DirectedGraph<T> extends Graph<T> {
     @Override
     public void addEdge(T u, T v) {
@@ -10,7 +14,7 @@ public class DirectedGraph<T> extends Graph<T> {
 
     @Override
     public void addEdge(T u, T v, int w) {
-        edges.add(new Edge<T>(u, v, w));
+        edges.add(new Edge<>(u, v, w));
 
         if (!adjList.containsKey(u)) {
             adjList.put(u, new ArrayList<>());
@@ -20,6 +24,6 @@ public class DirectedGraph<T> extends Graph<T> {
             adjList.put(v, new ArrayList<>());
         }
 
-        adjList.get(u).add(new Vertex<T>(v, w));
+        adjList.get(u).add(new Vertex<>(v, w));
     }
 }

@@ -3,6 +3,9 @@ package org.open.corejava.ds;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Mahadev Mane
+ */
 public class Trie {
     private final TrieNode root;
 
@@ -69,7 +72,7 @@ public class Trie {
         return false;
     }
 
-    private class TrieNode {
+    private static class TrieNode {
         Map<Character, TrieNode> children;
         boolean endOfWord;
 

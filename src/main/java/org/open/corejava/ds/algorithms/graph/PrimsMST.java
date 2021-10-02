@@ -7,6 +7,10 @@ import org.open.corejava.ds.Vertex;
 
 import java.util.*;
 
+/**
+ * @param <T>
+ * @author Mahadev Mane
+ */
 public class PrimsMST<T> {
     public List<Edge<T>> mst(Graph<T> graph) {
         MinHeap<T> mh = new MinHeap<>();
@@ -20,7 +24,7 @@ public class PrimsMST<T> {
 
         mh.replace(vertices.iterator().next(), 0);
 
-        Vertex<T> vertex = null;
+        Vertex<T> vertex;
         while (!mh.isEmpty()) {
             vertex = mh.pollMin();
             Edge<T> edge = map.get(vertex.getVertex());
@@ -30,7 +34,7 @@ public class PrimsMST<T> {
 
             for (Vertex<T> next : graph.getNeighbors(vertex.getVertex())) {
                 if (mh.contains(next.getVertex()) && mh.getWeight(next.getVertex()) > next.getWeight()) {
-                    edge = new Edge<T>(vertex.getVertex(), next.getVertex(), next.getWeight());
+                    edge = new Edge<>(vertex.getVertex(), next.getVertex(), next.getWeight());
                     mh.replace(next.getVertex(), next.getWeight());
                     map.put(next.getVertex(), edge);
                 }

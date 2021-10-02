@@ -1,7 +1,10 @@
 package org.open.corejava.ds.algorithms.search;
 
+/**
+ * @param <T>
+ * @author Mahadev Mane
+ */
 public class LinearSearch<T> implements Search<T> {
-
     @Override
     public boolean search(T[] arr, T item) {
         for (T t : arr) {

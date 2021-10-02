@@ -8,13 +8,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * @param <T>
+ * @author Mahadev Mane
+ */
 public class KruskalsMST<T> {
     public List<Edge<T>> mst(Graph<T> graph) {
         List<Edge<T>> result = new ArrayList<>();
         DisjointSet<T> ds = new DisjointSet<>();
 
-        Set<T> verices = graph.getVertices();
-        for (T vertex : verices) {
+        Set<T> vertices = graph.getVertices();
+        for (T vertex : vertices) {
             ds.makeSet(vertex);
         }
 

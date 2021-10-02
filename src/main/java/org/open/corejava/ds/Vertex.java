@@ -1,5 +1,9 @@
 package org.open.corejava.ds;
 
+/**
+ * @param <T>
+ * @author Mahadev Mane
+ */
 public class Vertex<T> {
     private T vertex;
     private int weight;

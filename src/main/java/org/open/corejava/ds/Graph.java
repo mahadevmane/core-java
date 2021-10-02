@@ -2,6 +2,10 @@ package org.open.corejava.ds;
 
 import java.util.*;
 
+/**
+ * @param <T>
+ * @author Mahadev Mane
+ */
 public class Graph<T> {
     protected Set<Edge<T>> edges;
     protected Map<T, List<Vertex<T>>> adjList;
@@ -28,7 +32,7 @@ public class Graph<T> {
     }
 
     public void addEdge(T u, T v, int w) {
-        edges.add(new Edge<T>(u, v, w));
+        edges.add(new Edge<>(u, v, w));
 
         if (!adjList.containsKey(u)) {
             adjList.put(u, new ArrayList<>());
@@ -38,25 +42,25 @@ public class Graph<T> {
             adjList.put(v, new ArrayList<>());
         }
 
-        adjList.get(u).add(new Vertex<T>(v, w));
-        adjList.get(v).add(new Vertex<T>(u, w));
+        adjList.get(u).add(new Vertex<>(v, w));
+        adjList.get(v).add(new Vertex<>(u, w));
     }
 
     @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer("Edges => ");
+        StringBuilder sb = new StringBuilder("Edges => ");
 
         for (Edge<T> edge : edges) {
-            sb.append(edge + "; ");
+            sb.append(edge).append("; ");
         }
 
         sb.delete(sb.length() - 2, sb.length());
         sb.append("\n\nAdjacency List\n");
 
         for (T vertex : adjList.keySet()) {
-            sb.append(vertex + " =>  ");
+            sb.append(vertex).append(" =>  ");
             for (Vertex<T> adjVertices : adjList.get(vertex)) {
-                sb.append(adjVertices + "; ");
+                sb.append(adjVertices).append("; ");
             }
 
             sb.delete(sb.length() - 2, sb.length());

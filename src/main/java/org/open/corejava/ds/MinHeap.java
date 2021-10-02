@@ -5,6 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @param <T>
+ * @author Mahadev Mane
+ */
 public class MinHeap<T> {
     private final Map<T, Integer> map;
     private final List<Vertex<T>> heap;
@@ -40,7 +44,7 @@ public class MinHeap<T> {
     public void add(T node, int weight) {
         this.index++;
         map.put(node, this.index);
-        heap.add(this.index, new Vertex<T>(node, weight));
+        heap.add(this.index, new Vertex<>(node, weight));
 
         /* Maintain heap property */
         maintainHeap(node);

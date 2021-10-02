@@ -2,8 +2,10 @@ package org.open.corejava.ds.algorithms.search;
 
 import java.util.Scanner;
 
+/**
+ * @author Mahadev Mane
+ */
 public class Searching {
-
     public static void main(String[] args) throws Exception {
         int n, item;
         Scanner sc = new Scanner(System.in);

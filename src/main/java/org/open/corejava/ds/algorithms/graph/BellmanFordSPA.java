@@ -7,6 +7,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * @param <T>
+ * @author Mahadev Mane
+ */
 public class BellmanFordSPA<T> {
     public ShortestPath<T> shortestPath(Graph<T> graph, T source) {
         Map<T, T> path = new HashMap<>();

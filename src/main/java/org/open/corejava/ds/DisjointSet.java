@@ -3,6 +3,10 @@ package org.open.corejava.ds;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @param <T>
+ * @author Mahadev Mane
+ */
 public class DisjointSet<T> {
     private final Map<T, Node> map;
 
@@ -60,12 +64,10 @@ public class DisjointSet<T> {
 
     @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer("Disjoint Sets:");
-
+        StringBuilder sb = new StringBuilder("Disjoint Sets:");
         for (T vertex : map.keySet()) {
-            sb.append("\n" + vertex + " => " + map.get(vertex));
+            sb.append("\n").append(vertex).append(" => ").append(map.get(vertex));
         }
-
         return sb.toString();
     }
 

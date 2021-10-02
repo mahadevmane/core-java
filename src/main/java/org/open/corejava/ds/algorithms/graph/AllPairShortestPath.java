@@ -3,6 +3,10 @@ package org.open.corejava.ds.algorithms.graph;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * @param <T>
+ * @author Mahadev Mane
+ */
 public class AllPairShortestPath<T> {
     public Map<T, Map<T, T>> path;
     public Map<T, Map<T, Integer>> distance;

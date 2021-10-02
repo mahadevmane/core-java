@@ -1,5 +1,9 @@
 package org.open.corejava.ds;
 
+/**
+ * @param <T>
+ * @author Mahadev Mane
+ */
 public class Edge<T> implements Comparable<Edge<T>>, Cloneable {
     private T u, v;
     private int weight;
